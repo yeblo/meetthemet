@@ -42,7 +42,7 @@ function Objects(props) {
                       className="w-full h-48 object-cover"
                     />
                   ) : (
-                    <div className="w-full h-48 flex items-center ">
+                    <div className="w-full h-48 object-cover">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 300 200"

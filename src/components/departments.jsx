@@ -10,7 +10,7 @@ function Departments(props) {
         <select 
           value={selectedDepartment || ''}
           onChange={(e) => onDepartmentChange(parseInt(e.target.value))}
-          className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+          className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-stone-600 focus:border-transparent"
         >
           <option value="">-- Select a Department --</option>
           {departments.map((dept) => (

@@ -259,7 +259,7 @@ function App() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-      <header className="bg-red-700 text-white text-center py-6 px-4 rounded-lg mb-8">
+      <header className="bg-amber-900 text-white text-center py-6 px-4 rounded-lg mb-8">
         <h1 className="text-3xl font-bold">
           The Metropolitan Museum of Art Collection
         </h1>
