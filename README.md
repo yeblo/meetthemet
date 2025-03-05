@@ -13,6 +13,6 @@ Install dependencies
 - npm install
 
 Start the development server
--npm run dev
+- npm run dev
 
 The application will be available at http://localhost:5173 by default. Otherwise check terminal or command prompt for the right port
