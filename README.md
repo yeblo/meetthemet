@@ -8,6 +8,11 @@ Clone the repository
 - git clone  https://github.com/yeblo/meetthemet/tree/master
 - cd meetthemet
 
+check if in master branch
+  - git branch
+    
+if in main branch, checkout the master branch
+- git checkout master
   
 Install dependencies
 - npm install
