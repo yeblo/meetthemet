@@ -17,7 +17,7 @@ function App() {
   const [titleSearchInput, setTitleSearchInput] = useState('');
 
   const itemsPerPage = 20;
-
+   const BASE_URL = "https://collectionapi.metmuseum.org/public/collection/v1/"
   // Fetch departments on initial load
   useEffect(() => {
     fetchDepartments();
@@ -28,7 +28,7 @@ function App() {
     if (selectedDepartment) {
       fetchObjectsByDepartment(selectedDepartment, page);
     } else if (isSearching && titleSearchTerm) {
-      searchObjectsByTitle(titleSearchTerm, page);
+      searchObjectsByTitle(titleSearchInput, page);
     } else {
       fetchAllObjects(page);
     }
@@ -37,7 +37,7 @@ function App() {
   const fetchDepartments = async () => {
     try {
       const response = await fetch(
-        "https://collectionapi.metmuseum.org/public/collection/v1/departments"
+        `${BASE_URL}/departments`
       );
       const data = await response.json();
       setDepartments(data.departments);
@@ -51,7 +51,7 @@ function App() {
     try {
       // Get all object IDs
       const response = await fetch(
-        "https://collectionapi.metmuseum.org/public/collection/v1/objects"
+        `${BASE_URL}/objects`
       );
       const data = await response.json();
 
@@ -73,7 +73,7 @@ function App() {
         pageObjectIds.map(async (id) => {
           try {
             const objResponse = await fetch(
-              `https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`
+              `${BASE_URL}/objects/${id}`
             );
             return await objResponse.json();
           } catch (error) {
@@ -182,7 +182,7 @@ function App() {
       const objectDetails = await Promise.all(
         pageObjectIds.map(async (id) => {
           try {
-            const objResponse = await fetch(`${API_BASE_URL}/objects/${id}`);
+            const objResponse = await fetch(`${BASE_URL}/objects/${id}`);
             return await objResponse.json();
           } catch (error) {
             console.error(`Error fetching object ${id}:`, error);
@@ -224,12 +224,13 @@ function App() {
   const handleTitleSearch = (e) => {
     e.preventDefault();
     if (!titleSearchInput.trim()) return;
-
+    
     setTitleSearchTerm(titleSearchInput.trim());
     setSelectedDepartment(null);
     setPage(1);
     setSelectedObject(null);
     setIsSearching(true);
+    searchObjectsByTitle(titleSearchInput, page)
   };
   const handleDepartmentChange = (departmentId) => {
     setSelectedDepartment(departmentId);

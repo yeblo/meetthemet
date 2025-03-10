@@ -46,7 +46,7 @@ function ObjectDetail(props) {
           <div className="grid md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <p>
-                <span className="font-bold">Artist:</span> {object.artistDisplayName || 'Unknown'}
+                <span className="font-bold">Artist:</span> {object.artistDisplayName || 'Anonymous'}
                 {object.artistDisplayBio && ` (${object.artistDisplayBio})`}
               </p>
               {object.objectDate && (
