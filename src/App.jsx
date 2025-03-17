@@ -15,8 +15,9 @@ function App() {
   const [titleSearchTerm, setTitleSearchTerm] = useState("");
   const [isSearching, setIsSearching] = useState(false);
   const [titleSearchInput, setTitleSearchInput] = useState('');
+  const [itemsPerPage, setItemsPerPage] = useState(10)
 
-  const itemsPerPage = 20;
+  
    const BASE_URL = "https://collectionapi.metmuseum.org/public/collection/v1/"
   // Fetch departments on initial load
   useEffect(() => {
@@ -32,7 +33,8 @@ function App() {
     } else {
       fetchAllObjects(page);
     }
-  }, [selectedDepartment, page]);
+
+  }, [selectedDepartment, page, itemsPerPage]);
 
   const fetchDepartments = async () => {
     try {
@@ -258,6 +260,11 @@ function App() {
     }
   };
 
+
+  const handlePageChange = (page)=>{
+    setItemsPerPage(page)
+  }
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
       <header className="bg-amber-900 text-white text-center py-6 px-4 rounded-lg mb-8">
@@ -285,6 +292,20 @@ function App() {
             onSearchSubmit={handleTitleSearch}
             text="Search by Title"
           />
+          
+          <select 
+          value={itemsPerPage}
+          onChange={(e) => handlePageChange(parseInt(e.target.value))}
+          className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-stone-600 focus:border-transparent"
+        >
+          <option value="">-- Items per page--</option>
+            <option value="10"> 10 </option>
+            <option value="20"> 20 </option>
+            <option value="30"> 30 </option>
+            <option value="40"> 40 </option>
+        
+        </select>
+
         </div>
         {selectedObject ? (
           <ObjectDetail
